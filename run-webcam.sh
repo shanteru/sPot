@@ -24,7 +24,7 @@ source .env
 # Check if virtual environment exists, create if it doesn't
 if [ ! -d "kvs_env" ]; then
   echo "Creating Python virtual environment..."
-  python3 -m virtualenv kvs_env
+  python3 -m venv kvs_env
   
   # Activate virtual environment
   source kvs_env/bin/activate
