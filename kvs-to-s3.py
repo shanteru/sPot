@@ -145,9 +145,13 @@ class KVSToS3ImageExtractor:
         return Gst.FlowReturn.OK
     
     def upload_to_s3(self, filepath, timestamp):
-        """Upload a file to S3"""
+        """Upload` a file to S3"""
         try:
-            s3_key = f"frames/{self.kvs_stream_name}/{timestamp}.{self.image_format}"
+            # Get the S3 prefix from environment variable or use default
+            s3_prefix = os.environ.get('S3_PREFIX', 'frames/')
+            
+            # Build the complete S3 key (path)
+            s3_key = f"{s3_prefix}{self.kvs_stream_name}/{timestamp}.{self.image_format}"
             
             # Upload the file to S3
             self.s3_client.upload_file(
@@ -162,7 +166,7 @@ class KVSToS3ImageExtractor:
             # Delete the local file
             os.remove(filepath)
         except Exception as e:
-            logger.error(f"Failed to upload to S3: {e}")
+            logger.error(f"F`ailed to upload to S3: {e}")
     
     def on_error(self, bus, msg):
         """Handle pipeline errors"""
