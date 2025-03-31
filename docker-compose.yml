@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  kvs-to-s3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+      - KVS_STREAM_NAME=${KVS_STREAM_NAME}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - AWS_REGION=${AWS_REGION:-us-east-1}
+      - IMAGE_INTERVAL=${IMAGE_INTERVAL:-1.0}
+      - IMAGE_FORMAT=${IMAGE_FORMAT:-jpg}
+      - IMAGE_QUALITY=${IMAGE_QUALITY:-85}
+    volumes:
+      - ./:/app/data
+    restart: unless-stopped

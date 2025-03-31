@@ -1,0 +1,29 @@
+# AWS SDK and tools
+boto3>=1.26.0
+awscli>=1.27.0
+
+# Video processing
+opencv-python>=4.6.0
+numpy>=1.23.0
+
+# AWS Kinesis Video Streams SDK
+amazon-kinesis-video-streams-producer-sdk-python>=1.5.0
+
+# Alternative KVS libraries (if the official SDK has issues)
+kvs-python>=0.2.0
+
+# Image processing utilities
+Pillow>=9.0.0
+
+# For handling concurrent operations
+futures>=3.0.5
+
+# Utilities
+requests>=2.28.0
+six>=1.16.0
+
+# For debugging and logging
+structlog>=22.1.0
+
+# For webcam access on macOS (alternatives)
+PyObjC>=8.5.0  # For macOS specific APIs
