@@ -1,4 +1,5 @@
 # 1. Install Gstreamer locally in my mac
+It will take quite a while, just note that this is done locally. 
 ```bash
 brew install gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
 ```
