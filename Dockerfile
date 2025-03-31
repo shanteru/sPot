@@ -53,10 +53,11 @@ RUN chmod +x /app/kvs-to-s3.py
 # Set up environment variables (these can be overridden at runtime)
 ENV KVS_STREAM_NAME=""
 ENV S3_BUCKET_NAME=""
-ENV AWS_REGION=""
+ENV AWS_REGION="ap-southeast-1"
 ENV IMAGE_INTERVAL="1.0"
 ENV IMAGE_FORMAT="jpg"
 ENV IMAGE_QUALITY="85"
+ENV S3_PREFIX="uploads/images/temp/"
 
 # Command to run when container starts
 ENTRYPOINT ["python3", "/app/kvs-to-s3.py"]
