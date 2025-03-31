@@ -16,6 +16,7 @@ AWS_SESSION_TOKEN=
 # KVS and S3 Settings
 KVS_STREAM_NAME=
 S3_BUCKET_NAME=
+S3_PREFIX=
 AWS_REGION=us-east-1
 
 # Image Settings
