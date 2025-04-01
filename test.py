@@ -72,6 +72,10 @@ class WebcamToS3:
             logger.error("Failed to capture frame")
             return False
         
+        # Display the frame in a window
+        cv2.imshow('Webcam Preview', frame)
+        cv2.waitKey(1)  # Process window events and display the frame
+        
         # Create filename with timestamp
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         filename = f"{timestamp}.{self.format}"
@@ -115,6 +119,7 @@ class WebcamToS3:
         
         logger.info(f"Starting webcam capture every {self.interval} seconds")
         logger.info(f"Uploading to s3://{self.bucket_name}/{self.prefix}")
+        logger.info(f"Preview window opened - press 'q' to quit")
         
         try:
             count = 0
@@ -131,6 +136,11 @@ class WebcamToS3:
                     fps = count / elapsed
                     logger.info(f"Captured {count} frames, average rate: {fps:.2f} fps")
                 
+                # Check for 'q' key press to quit
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    logger.info("Quit key pressed")
+                    break
+                
                 # Wait for next interval
                 time.sleep(self.interval)
                 
@@ -143,6 +153,9 @@ class WebcamToS3:
         """Stop capture and release resources"""
         if self.cap is not None:
             self.cap.release()
+        
+        # Close all OpenCV windows
+        cv2.destroyAllWindows()
         
         logger.info("Capture stopped")
 
